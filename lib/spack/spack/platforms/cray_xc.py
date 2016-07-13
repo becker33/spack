@@ -11,7 +11,7 @@ class CrayXc(Platform):
 
     front_os    = "SuSE11"
     back_os     = "CNL10"
-    default_os  = "CNL10" 
+    default_os  = "CNL10"
 
     def __init__(self):
         ''' Since cori doesn't have ivybridge as a front end it's better
@@ -32,15 +32,15 @@ class CrayXc(Platform):
         # Could switch to use modules and fe targets for front end
         # Currently using compilers by path for front end.
         self.add_target('sandybridge', Target('sandybridge'))
-        self.add_target('ivybridge', 
+        self.add_target('ivybridge',
                         Target('ivybridge', 'craype-ivybridge'))
-        self.add_target('haswell', 
-                        Target('haswell','craype-haswell'))         
+        self.add_target('haswell',
+                        Target('haswell','craype-haswell'))
 
         self.add_operating_system('SuSE11', LinuxDistro())
         self.add_operating_system('CNL10', Cnl())
 
     @classmethod
     def detect(self):
-        return os.path.exists('/opt/cray/craype')
+        return os.path.exists('/cray_home')
 
